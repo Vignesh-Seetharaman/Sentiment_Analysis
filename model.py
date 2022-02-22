@@ -16,10 +16,9 @@ def get_sentiment(text):
     return sentiment_id
 
 def predict_top5(username):
-    print(username)
-    d = userRecommendation.loc[str(username)].sort_values(ascending=False)[0:20]
+    top_20 = userRecommendation.loc[str(username)].sort_values(ascending=False)[0:20]
     ratings = pd.read_csv('data/ratings_df.csv' , encoding='latin-1')
-    output_user = pd.merge(d,ratings,left_on='name',right_on='name',how='left')
+    output_user = pd.merge(top_20,ratings,left_on='name',right_on='name',how='left')
     rows = []
     for text,name in zip(output_user['reviews_text'],output_user['name']):
         rows.append([name,text,get_sentiment(text)])

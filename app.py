@@ -16,8 +16,8 @@ def predict():
     username = request.form.get('username')
     finalRecommendation = model.predict_top5(username)
     output_df = pd.DataFrame(finalRecommendation, columns=["product","percentage"])
-    output = [output_df.to_html(classes='output_df')]
-    return render_template("index.html", OUTPUT= output)
+    output = output_df['product'].tolist()
+    return render_template("index.html", OUTPUT= output , Text = 'Recommended Products')
 
 if __name__ == '__main__':
     app.run(debug=True)

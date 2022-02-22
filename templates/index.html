@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html >
 <head>
-  <meta charset="UTF-8">
-  <title>Demo</title>
+    <meta charset="UTF-8">
+    <title>Demo</title>
 </head>
 
+
 <body>
- <div class="login">
-  <h1>IRIS Flower Prediction</h1>	
+  <h1  style="font-size:3vw; text-align:center" >Sentiment Based Recommendation</h1>	
+  <font size = '5' color='blue' > <p style="font-size:2vw; text-align:center"> Project by Vignesh Seetharaman</p></font>
+  </br></br>
+  </br>  
      <!-- Define a form to take input from user -->
         <form action="{{ url_for('predict')}}" method="post">
-        <label for="SW">UserName:</label>
-        <input type="text" name="username" required="required" />
-         <button type="submit">Predict</button>
+          <p style="font-size:1.5vw; text-align:center">
+            <b>Enter UserName:</b>
+            <input type="text" name="username" required="required" /> 
+       
+       <button type="submit"><font size = '5'><b>Recommendation</b></font></button> </p>
     </form>
 
    <br>
   <H2>
-      {{ OUTPUT }} 
+    <div style=" text-align:center">
+     <p style="font-size:1.5vw; text-align:center"> {{ Text }} </p>
+      {% for table in OUTPUT %}
+        {{ table|safe }}  <br>  
+      {% endfor %}
+    </div>
  </H2>
  </div>
 </body>
